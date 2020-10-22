@@ -26,7 +26,7 @@
             alpha: true
         });
         var container = document.getElementById('logo');
-        container.appendChild(renderer.domElement);
+        container.prepend(renderer.domElement);
 
         const smallestDimension = (Math.min(container.clientWidth, container.clientHeight));
 
