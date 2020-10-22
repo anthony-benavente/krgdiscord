@@ -5,65 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KRG Discord</title>
-    <style>
-        body,
-        html {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            background-image: url(diagmonds.png);
-            width: 100%;
-            height: 100%;
-            position: relative;
-            background-color: rgb(51, 51, 51);
-        }
-
-        .logo {
-            width: 93%;
-            height: 93%;
-            position: absolute;
-            margin: 0 auto;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #0000003d;
-            border-radius: 100px;
-        }
-
-        .join-link {
-            position: absolute;
-            bottom: 38px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .join-link a {
-            font-size: 3em;
-            color: white;
-            font-family: sans-serif;
-        }
-
-        canvas {
-            position: absolute;
-            width: 70%;
-            height: 70%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .label {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            top: 0;
-            color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -80,7 +22,9 @@
         var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 1000);
         var mesh;
 
-        var renderer = new THREE.WebGLRenderer({ alpha: true });
+        var renderer = new THREE.WebGLRenderer({
+            alpha: true
+        });
         var container = document.getElementById('logo');
         container.appendChild(renderer.domElement);
 
@@ -93,10 +37,12 @@
         THREE.ImageUtils.crossOrigin = true;
         var textureLoader = new THREE.TextureLoader();
         textureLoader.crossOrigin = true;
-        textureLoader.load('KRGoriginal.png', function (texture) {
+        textureLoader.load('KRGoriginal.png', function(texture) {
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
             texture.repeat.set(2, 2);
-            var material = new THREE.MeshLambertMaterial({ map: texture });
+            var material = new THREE.MeshLambertMaterial({
+                map: texture
+            });
             mesh = new THREE.Mesh(geometry, material);
             scene.add(mesh);
             texture.center = new THREE.Vector2(0.5, 0.5);
@@ -140,7 +86,7 @@
 
         window.addEventListener('resize', onWindowResize, false);
 
-        var render = function () {
+        var render = function() {
             requestAnimationFrame(render);
             mesh.rotation.y -= 0.01;
             renderer.render(scene, camera);
